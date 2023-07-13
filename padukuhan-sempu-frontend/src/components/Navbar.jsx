@@ -29,9 +29,8 @@ const Navbar = () => {
             <NavLink
               key={item.name}
               to={item.to}
-              className={`${
-                hoveredLink === index ? "text-white" : "text-gray-300"
-              } hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors duration-500`}
+              className={`${hoveredLink === index ? "text-white" : "text-gray-300"
+                } hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors duration-500`}
               onMouseEnter={() => handleLinkHover(index)}
               onMouseLeave={handleLinkLeave}
             >

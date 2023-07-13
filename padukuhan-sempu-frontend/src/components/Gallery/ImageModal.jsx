@@ -13,7 +13,7 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
 
   const deleteImage = (id) => {
     axios
-      .delete(`http://localhost:5000/images/${id}`)
+      .delete(`http://127.0.0.1:8000/api/images-delete/${id}`)
       .then(function (response) {
         console.log(response.data);
         alert("successfully Deleted");
@@ -33,7 +33,7 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
     <div>
       <img
         src={imageUrl}
-        alt={title}
+        alt="Image"
         className="cursor-pointer w-full"
         onClick={openModal}
       />
