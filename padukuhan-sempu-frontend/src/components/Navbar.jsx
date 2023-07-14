@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { UserIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../contex/authContextProvider";
 
 const navigation = [
   { name: "Home", to: "/" },
@@ -11,6 +12,8 @@ const navigation = [
 
 const Navbar = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
+
+  const { currentUser } = useContext(AuthContext);
 
   const handleLinkHover = (index) => {
     setHoveredLink(index);
@@ -40,7 +43,18 @@ const Navbar = () => {
           ))}
         </div>
         <div className="flex justify-center items-center">
-          <UserIcon className="h-5 w-5 text-white" />
+          <NavLink to="/login">
+            {currentUser ? (
+              <p className="text-white ring-2 ring-yellow-400 p-2 rounded-full">
+                Hallo{" "}
+                <span className="text-red-400 font-bold">
+                  {currentUser.username}
+                </span>
+              </p>
+            ) : (
+              <UserIcon className="h-5 w-5 text-white" />
+            )}
+          </NavLink>
         </div>
       </div>
     </nav>

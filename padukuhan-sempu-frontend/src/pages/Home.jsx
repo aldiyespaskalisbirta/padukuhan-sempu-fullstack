@@ -30,11 +30,12 @@ const Home = () => {
             <div className=" text-center w-[30%]">
               <Fade direction="left" delay={300}>
                 <p className="font-sans font-black md:text-2xl text-base">
-                  TENTANG PADUKUHAN <hr /> SEMPU KALURAHAN <hr /> PRINGOMBO
+                  <span className="border-b-2">TENTANG PADUKUHAN</span>{" "}
+                  <span className="border-t-2">SEMPU KALURAHAN</span> PRINGOMBO
                 </p>
               </Fade>
             </div>
-            <hr class="w-80 h-1 mx-auto m-4 bg-gray-900 block sm:hidden"></hr>
+            <hr className="w-80 h-1 mx-auto m-4 bg-gray-900 block sm:hidden"></hr>
             <div className="mr-10 ml-12 hidden sm:block">
               <img className="" src={line} />
             </div>

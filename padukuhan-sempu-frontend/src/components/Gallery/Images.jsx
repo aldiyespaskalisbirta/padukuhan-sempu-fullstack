@@ -10,6 +10,7 @@ const Images = () => {
     setDataImages(response.data);
   }
 
+
   useEffect(() => {
     getImages();
   }, []);
