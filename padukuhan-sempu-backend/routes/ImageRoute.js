@@ -6,6 +6,7 @@ const {
   saveImage,
   updateImage,
   deleteImage,
+  downloadImage,
 } = require("../controllers/ImageController");
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get("/images/:id", getImageById);
 router.post("/images", saveImage);
 router.patch("/images/:id", updateImage);
 router.delete("/images/:id", deleteImage);
+router.get("/images/download/:id", downloadImage);
 
 module.exports = router;

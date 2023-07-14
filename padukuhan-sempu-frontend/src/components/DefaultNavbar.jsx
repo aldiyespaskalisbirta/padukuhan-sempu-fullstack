@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { UserIcon } from "@heroicons/react/24/outline";
-
+import { AuthContext } from "../contex/authContextProvider";
 const navigation = [
   { name: "Home", to: "/" },
   { name: "Budaya", to: "/budaya" },
   { name: "Gallery Foto", to: "/gallery/images" },
   { name: "Kontak", to: "/kontak" },
 ];
-
 
 const DefaultNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,6 +17,8 @@ const DefaultNavbar = () => {
 
   const [hoveredLink, setHoveredLink] = useState(null);
 
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   const handleLinkHover = (index) => {
     setHoveredLink(index);
   };
@@ -42,7 +43,13 @@ const DefaultNavbar = () => {
           onClick={toggleMenu}
         >
           <span className="sr-only">Open main menu</span>
-          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <svg
+            className="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
             <path
               stroke="currentColor"
               strokeLinecap="round"
@@ -53,18 +60,17 @@ const DefaultNavbar = () => {
           </svg>
         </button>
         <div
-          className={`${isMenuOpen ? "" : "hidden"
-            } w-full md:block md:w-auto`}
+          className={`${isMenuOpen ? "" : "hidden"} w-full md:block md:w-auto`}
           id="navbar-default"
         >
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navigation.map((item, index) => (
-              <li>
+              <li key={index}>
                 <a
-                  key={item.name}
                   href={item.to}
-                  className={`${hoveredLink === index ? "text-white" : "text-gray-300"
-                    } hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors duration-500`}
+                  className={`${
+                    hoveredLink === index ? "text-white" : "text-gray-300"
+                  } hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors duration-500`}
                   onMouseEnter={() => handleLinkHover(index)}
                   onMouseLeave={handleLinkLeave}
                 >
@@ -73,7 +79,13 @@ const DefaultNavbar = () => {
               </li>
             ))}
             <div className="flex justify-center items-center">
-              <UserIcon className="h-5 w-5 text-white" />
+              <a href="/login">
+                {currentUser ? (
+                  <p>Hallo {currentUser.username}</p>
+                ) : (
+                  <UserIcon className="h-5 w-5 text-white" />
+                )}
+              </a>
             </div>
           </ul>
         </div>
