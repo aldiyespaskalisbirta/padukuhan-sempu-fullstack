@@ -21,14 +21,6 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
       });
   };
 
-  const downloadImage = (id) => {
-    axios
-      .get(`http://localhost:5000/images${id}/download`)
-      .then(function (response) {
-        console.log(response);
-      });
-  };
-
   return (
     <div>
       <img
@@ -51,14 +43,8 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
             </div>
             <div className="action flex gap-5">
               <button
-                className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 ease-in-out"
-                onClick={() => downloadImage(imageId)}
-              >
-                Download
-              </button>
-              <button
                 className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 ease-in-out"
-                onClick={() => deleteImage(imageId, title)}
+                onClick={() => deleteImage(imageId)}
               >
                 Delete
               </button>
