@@ -10,7 +10,7 @@ const Home = () => {
       {/* slide */}
       <div className='md:h-[70vh] h-[60vh]'>
         <Carousel slideInterval={3000}>
-          <img src='https://flowbite.com/docs/images/carousel/carousel-1.svg' />
+          <img src='https://scontent.fsrg6-1.fna.fbcdn.net/v/t39.30808-6/353807308_2230421623834378_1964256921282244413_n.jpg?stp=cp6_dst-jpg_p720x720&_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGo0vYEBw4-sRrPTOCiSsB1DUglFndXty0NSCUWd1e3LQktXgbK-TmqmLg_gbIYKY1MOXNd4zuwsa6VYipVqTql&_nc_ohc=l5G5GIOUqnoAX8KvTme&_nc_ht=scontent.fsrg6-1.fna&oh=00_AfAKHukYO7vj8GK2w_QMQbARm9l47KzYQ5kr0JKOlxux1w&oe=64B51DD7'/>
           <img src='https://scontent.fsub8-2.fna.fbcdn.net/v/t1.6435-9/53669241_421008108673265_2629978221038272512_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=19026a&_nc_eui2=AeEfudU-8cISRZeHIkJJ3woVtghMJobXKoK2CEwmhtcqggTR_iMilDaXL96KJ2D_ITW4Vzrh4mCEINPQVZp8HyMl&_nc_ohc=2d777bsSG5IAX8Dh4Op&_nc_ht=scontent.fsub8-2.fna&oh=00_AfAzM250xqkF0c8CWmPnFTrNBS7RD-lWhCrImIU3jRBwBw&oe=64D79093' />
           <img src='https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg' />
         </Carousel>
@@ -67,7 +67,7 @@ const Home = () => {
         </Fade>
         <div className="flex justify-center items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <Fade direction="down" delay={800}>
+            <Fade direction="down">
               <Card
                 url={
                   "https://flowbite.com/docs/images/carousel/carousel-1.svg"

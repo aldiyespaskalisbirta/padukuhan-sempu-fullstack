@@ -18,7 +18,7 @@ const ContentBudaya = ({ data }) => {
               className={`w-full p-4 m-2 lg:w-[100vh] flex flex-col justify-center items-center ${imageOrder === "order-first" ? "lg:order-2" : ""
                 }`}
             >
-              <Fade direction="left" delay={300}>
+              <Fade direction="left">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {item.judul}
                 </h5>
@@ -27,7 +27,7 @@ const ContentBudaya = ({ data }) => {
                 </p>
               </Fade>
             </div>
-            <Fade direction="right" delay={300}>
+            <Fade direction="right">
               <img
                 className={`w-[50vh] object-cover mx-auto rounded-br-[40px] rounded-tl-[40px] lg:w-96 mb-5 ${imageOrder === "order-first" ? "lg:order-1" : ""
                   }`}

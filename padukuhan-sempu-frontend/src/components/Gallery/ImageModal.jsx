@@ -13,7 +13,7 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
 
   const deleteImage = (id) => {
     axios
-      .delete(`http://127.0.0.1:8000/api/images-delete/${id}`)
+      .delete(`http://localhost:5000/images/${id}`)
       .then(function (response) {
         console.log(response.data);
         alert("successfully Deleted");
@@ -23,7 +23,7 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
 
   const downloadImage = (id) => {
     axios
-      .get(`http://127.0.0.1:8000/api/images/${id}/download`)
+      .get(`http://localhost:5000/images${id}/download`)
       .then(function (response) {
         console.log(response);
       });

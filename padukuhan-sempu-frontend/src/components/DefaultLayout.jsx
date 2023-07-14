@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./DefaultNavbar";
 import Footer from "./footer";
 
 const user = {
