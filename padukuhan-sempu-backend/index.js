@@ -2,8 +2,8 @@ const express = require("express");
 const FileUpload = require("express-fileupload");
 const cors = require("cors");
 const imageRoute = require("./routes/ImageRoute");
-const userRoute = require("./routes/UserRoute");
 const cookieParser = require("cookie-parser");
+const userRoute = require("./routes/UserRoute");
 
 const app = express();
 
@@ -26,8 +26,8 @@ app.use(FileUpload());
 
 // server static files
 app.use(express.static("public"));
-app.use(imageRoute);
 app.use(userRoute);
+app.use(imageRoute);
 
 const port = process.env.PORT || 5000;
 

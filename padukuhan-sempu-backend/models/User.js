@@ -9,22 +9,24 @@ const User = db.define(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { noEmpty: true, len: [3, 100] },
+      validate: { len: [3, 100] },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { noEmpty: true, isEmail: true },
+      validate: { isEmail: true },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { noEmpty: true },
     },
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { noEmpty: true },
+      defaultValue: "user",
+    },
+    refreshToken: {
+      type: DataTypes.STRING,
     },
   },
   {
