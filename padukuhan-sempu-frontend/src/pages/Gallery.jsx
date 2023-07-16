@@ -4,7 +4,6 @@ import { Link, Outlet } from "react-router-dom";
 const Gallery = () => {
   return (
     <div className="mt-16">
-      <header className="">
         <div className="flex justify-between text-center mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-[#424242]">
             GALLERY FOTO
@@ -16,7 +15,6 @@ const Gallery = () => {
             add image
           </Link>
         </div>
-      </header>
       <main className="min-h-screen">
         <div className="flex justify-center items-center mx-auto max-w-7xl sm:px-6 lg:px-8">
           <Outlet />

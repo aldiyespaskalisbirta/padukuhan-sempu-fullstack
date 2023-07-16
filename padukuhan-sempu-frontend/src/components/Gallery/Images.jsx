@@ -19,19 +19,21 @@ const Images = () => {
     <>
       <main>
         {/* Your content */}
-        <div className="container">
-          <div className="columns-4 gap-3 w-[1200px] mx-auto space-y-3 pb-28">
-            {dataImages?.map((data, index) => (
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid gap-4">
+          {dataImages.map((data, index) => (
               <ImageModal
                 key={index}
-                title={data.name}
+                title={data.title}
                 description={data.description}
-                imageUrl={data.url}
+                imageUrl={`http://127.0.0.1:8000/storage/${data.image}`}
                 imageId={data.id}
               />
             ))}
           </div>
         </div>
+
       </main>
     </>
   );
