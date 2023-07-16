@@ -27,7 +27,7 @@ const Images = () => {
                 key={index}
                 title={data.title}
                 description={data.description}
-                imageUrl={`http://127.0.0.1:8000/storage/${data.image}`}
+                imageUrl={`http://127.0.0.1:5000/images/${data.image}`}
                 imageId={data.id}
               />
             ))}
