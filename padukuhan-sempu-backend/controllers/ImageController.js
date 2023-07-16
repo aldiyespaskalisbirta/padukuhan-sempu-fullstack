@@ -41,7 +41,7 @@ const saveImage = (req, res) => {
 
   if (!allowedType.includes(ext.toLowerCase()))
     return res.status(422).json({ message: "Invalid Image Extension" });
-  if (fileSize > 5000000)
+  if (fileSize > 10000000)
     return res.status(422).json({ message: "Image must be less than 5mb" });
 
   file.mv(`./public/images/${fileName}`, async (err) => {
