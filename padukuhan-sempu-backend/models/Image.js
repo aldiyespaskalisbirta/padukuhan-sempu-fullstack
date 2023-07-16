@@ -18,6 +18,6 @@ const Images = db.define(
 
 module.exports = Images;
 
-(async () => {
-  await db.sync();
-})();
+// (async () => {
+//   await db.sync();
+// })();

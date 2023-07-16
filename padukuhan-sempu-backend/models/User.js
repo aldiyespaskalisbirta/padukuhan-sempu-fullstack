@@ -18,6 +18,6 @@ const User = db.define(
 
 module.exports = User;
 
-(async () => {
-  await db.sync();
-})();
+// (async () => {
+//   await db.sync();
+// })();
