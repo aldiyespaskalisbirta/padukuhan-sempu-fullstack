@@ -10,10 +10,11 @@ const Images = () => {
     setDataImages(response.data);
   }
 
-
   useEffect(() => {
     getImages();
   }, []);
+
+  console.log(dataImages);
 
   return (
     <>
@@ -22,18 +23,17 @@ const Images = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="grid gap-4">
-          {dataImages.map((data, index) => (
+            {dataImages.map((data, index) => (
               <ImageModal
                 key={index}
                 title={data.title}
                 description={data.description}
-                imageUrl={`http://127.0.0.1:8000/storage/${data.image}`}
+                imageUrl={data.url}
                 imageId={data.id}
               />
             ))}
           </div>
         </div>
-
       </main>
     </>
   );

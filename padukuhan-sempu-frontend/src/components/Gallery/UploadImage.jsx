@@ -43,13 +43,13 @@ const UploadImage = () => {
     <div className="w-2/3 flex flex-col bg-gray-300 rounded-2xl p-8 shadow-2xl">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="title" className="w-full justify-start font-semibold">
+          <label htmlFor="name" className="w-full justify-start font-semibold">
             Judul gambar
           </label>
           <input
             type="text"
-            name="title"
-            id="title"
+            name="name"
+            id="name"
             className="input w-full"
             onChange={(e) => setTitle(e.target.value)}
           />

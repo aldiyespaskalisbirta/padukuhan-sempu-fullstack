@@ -18,7 +18,7 @@ const DefaultNavbar = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  // console.log(currentUser);
   const handleLinkHover = (index) => {
     setHoveredLink(index);
   };

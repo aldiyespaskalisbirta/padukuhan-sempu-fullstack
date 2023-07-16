@@ -9,15 +9,13 @@ const Images = db.define(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { noEmpty: true, len: [3, 100] },
     },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { noEmpty: true, isEmail: true },
     },
     image: { type: DataTypes.STRING, allowNull: false },
-    url: { type: DataTypes.STRING },
+    url: { type: DataTypes.STRING, allowNull: false },
   },
   {
     freezeTableName: true,

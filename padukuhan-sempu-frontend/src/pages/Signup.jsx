@@ -19,7 +19,7 @@ const Signup = () => {
   }
 
   async function handleSubmit(e) {
-    console.log(inputs.username);
+    // console.log(inputs.username);
     try {
       e.preventDefault();
       if (inputs.confirmPassword != inputs.password) {
