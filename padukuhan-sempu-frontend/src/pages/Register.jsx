@@ -3,7 +3,7 @@ import { Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Signup = () => {
+const Register = () => {
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -104,4 +104,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;
