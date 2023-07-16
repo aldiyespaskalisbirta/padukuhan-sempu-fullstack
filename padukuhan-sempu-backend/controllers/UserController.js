@@ -14,7 +14,7 @@ const register = async (req, res) => {
   } else {
     const username = req.body.username;
     const email = req.body.email;
-    const isAdmin = req.body.isAdmin;
+    const role = req.body.role;
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
@@ -23,7 +23,7 @@ const register = async (req, res) => {
         username: username,
         email: email,
         password: hashedPassword,
-        isAdmin: isAdmin,
+        role: role,
       });
       res.status(201).json({ message: "User successfully created" });
     } catch (err) {
@@ -51,7 +51,7 @@ const login = async (req, res) => {
       return res.status(400).json({ message: "Wrong email or password" });
     }
 
-    const token = jwt.sign({ id: user.id, isAdmin: user.isAdmin }, "secretKey");
+    const token = jwt.sign({ id: user.id, role: user.role }, "secretKey");
 
     const { password, ...others } = user;
 
