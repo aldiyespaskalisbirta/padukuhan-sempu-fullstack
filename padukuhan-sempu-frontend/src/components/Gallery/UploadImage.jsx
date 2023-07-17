@@ -82,12 +82,16 @@ const UploadImage = () => {
             onChange={loadImage}
           />
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex md:flex-row items-center justify-center gap-3 flex-col">
           <button
             type="submit"
-            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600"
+            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
           >
             Tambahkan
+          </button>
+          <button type="reset" className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]">RESET</button>
+          <button onClick={() => window.location.href = "/gallery/images"} type="button" className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]">
+            kembali
           </button>
         </div>
       </form>

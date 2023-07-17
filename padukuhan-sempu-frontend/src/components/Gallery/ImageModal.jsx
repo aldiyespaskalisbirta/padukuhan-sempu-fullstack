@@ -22,11 +22,11 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
   };
 
   return (
-    <div>
+    <div className="">
       <img
         src={imageUrl}
         alt="Image"
-        className="cursor-pointer w-full"
+        className="cursor-pointer h-auto max-w-full rounded-lg"
         onClick={openModal}
       />
 
