@@ -13,7 +13,7 @@ const AuthContextProvider = ({ children }) => {
   // Define the login function
   const login = async (inputs) => {
     // Perform login logic
-    const res = await axios.post("http://localhost:5000/login", inputs, {
+    const res = await axios.post("http://localhost:5000/auth", inputs, {
       withCredentials: true,
     });
 
