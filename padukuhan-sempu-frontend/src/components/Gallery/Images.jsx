@@ -17,25 +17,21 @@ const Images = () => {
   console.log(dataImages);
 
   return (
-    <>
-      <main>
-        {/* Your content */}
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="grid gap-4">
-            {dataImages.map((data, index) => (
-              <ImageModal
-                key={index}
-                title={data.title}
-                description={data.description}
-                imageUrl={data.url}
-                imageId={data.id}
-              />
-            ))}
+    <main>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {dataImages.map((data, index) => (
+          <div key={index} className="flex flex-col items-center">
+            <ImageModal
+              title={data.title}
+              description={data.description}
+              imageUrl={data.url}
+              imageId={data.id}
+            />
+            <p className="text-center">{data.title}</p>
           </div>
-        </div>
-      </main>
-    </>
+        ))}
+      </div>
+    </main>
   );
 };
 
