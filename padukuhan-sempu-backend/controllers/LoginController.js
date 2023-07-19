@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 const jwt = require("jsonwebtoken");
-require("dotenv").config;
+require("dotenv").config(); 
 
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -35,7 +35,7 @@ const handleLogin = async (req, res) => {
       })
       .status(200)
       .json({
-        accessToken: accessToken,
+        accessToken,
       });
   }
 };
