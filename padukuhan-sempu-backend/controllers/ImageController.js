@@ -7,7 +7,7 @@ const getImages = async (req, res) => {
     const response = await Images.findAll();
     res.json(response);
   } catch (err) {
-    console.log(err.message);
+    res.status(404).json({ message: "No images to show" });
   }
 };
 
@@ -22,7 +22,7 @@ const getImageById = async (req, res) => {
     if (!response) return res.status(404).json({ message: "Image not found" });
     res.json(response);
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -45,7 +45,7 @@ const saveImage = (req, res) => {
     return res.status(422).json({ message: "Image must be less than 5mb" });
 
   file.mv(`./public/images/${fileName}`, async (err) => {
-    if (err) return res.status(500).json({ message: err.message });
+    // if (err) return res.status(500).json({ message: err.message });
     try {
       await Images.create({
         name: name,
@@ -55,7 +55,7 @@ const saveImage = (req, res) => {
       });
       res.status(201).json({ message: "Image successfully created" });
     } catch (err) {
-      console.log(err.message);
+      res.status(500).json({ message: err.message });
     }
   });
 };
