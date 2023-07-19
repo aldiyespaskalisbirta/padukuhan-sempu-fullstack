@@ -18,8 +18,8 @@ const DefaultNavbar = () => {
 
   const [hoveredLink, setHoveredLink] = useState(null);
 
-  const { currentUser } = useContext(AuthContext);
-  // console.log(currentUser);
+  const { token } = useContext(AuthContext);
+  // console.log(token);
   const handleLinkHover = (index) => {
     setHoveredLink(index);
   };
@@ -81,8 +81,8 @@ const DefaultNavbar = () => {
             ))}
             <div className="flex justify-center items-center">
               <a href="/login">
-                {currentUser ? (
-                  <p>Hallo {currentUser.username}</p>
+                {token ? (
+                  <p>Hallo {`Sempu`}</p>
                 ) : (
                   // <UserIcon className="h-5 w-5 text-white" />
                   <h1>LOGIN</h1>

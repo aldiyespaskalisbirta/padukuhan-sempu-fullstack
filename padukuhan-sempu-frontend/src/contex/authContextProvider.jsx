@@ -6,7 +6,7 @@ const AuthContext = createContext();
 // Create the AuthContextProvider component
 const AuthContextProvider = ({ children }) => {
   // Define the state variables for authentication
-  const [currentUser, setCurrentUser] = useState(
+  const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
 
@@ -17,7 +17,7 @@ const AuthContextProvider = ({ children }) => {
       withCredentials: true,
     });
 
-    setCurrentUser(res.data);
+    setToken(res.data);
   };
 
   // Define the logout function
@@ -29,18 +29,18 @@ const AuthContextProvider = ({ children }) => {
 
   // Create the context value object
   const authContextValue = {
-    currentUser,
+    token,
     login,
     logout,
   };
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(currentUser));
-  }, [currentUser]);
-  
+    localStorage.setItem("user", JSON.stringify(token));
+  }, [token]);
+
   // Provide the context value to the child components
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
+    <AuthContext.Provider value={{ token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../contex/authContextProvider";
 
 const Gallery = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
   return (
     <div className="mt-16">
@@ -11,16 +11,13 @@ const Gallery = () => {
         <h1 className="text-3xl font-bold tracking-tight text-[#424242]">
           GALLERY FOTO
         </h1>
-        {currentUser.role === "admin" ? (
-          <Link
-            to="/gallery/add-image"
-            className="hover:bg-gray-50 text-gray-900 font-semibold shadow rounded px-4 py-2 my-auto text-center"
-          >
-            add image
-          </Link>
-        ) : (
-          ""
-        )}
+
+        <Link
+          to="/gallery/add-image"
+          className="hover:bg-gray-50 text-gray-900 font-semibold shadow rounded px-4 py-2 my-auto text-center"
+        >
+          add image
+        </Link>
       </div>
       <main className="min-h-screen">
         <div className="flex justify-center items-center mx-auto max-w-7xl sm:px-6 lg:px-8">

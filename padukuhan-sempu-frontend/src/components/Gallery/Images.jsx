@@ -27,7 +27,6 @@ const Images = () => {
               description={data.description}
               imageUrl={data.url}
               imageId={data.id}
-              role={currentUser.role}
             />
             <p className="text-center">{data.title}</p>
           </div>
