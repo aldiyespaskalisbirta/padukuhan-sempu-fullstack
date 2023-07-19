@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../../contex/authContextProvider";
 const ImageModal = ({ imageUrl, title, description, imageId, role }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const { token } = useContext(AuthContext);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -15,8 +17,7 @@ const ImageModal = ({ imageUrl, title, description, imageId, role }) => {
     axios
       .delete(`http://localhost:5000/images/${id}`)
       .then(function (response) {
-        console.log(response.data);
-        alert("successfully Deleted");
+        alert(response.data);
         window.location.reload();
       });
   };
@@ -42,7 +43,7 @@ const ImageModal = ({ imageUrl, title, description, imageId, role }) => {
               </p>
             </div>
             <div className="action flex gap-5">
-              {role === "admin" && (
+              {token && (
                 <button
                   className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 ease-in-out"
                   onClick={() => deleteImage(imageId)}
