@@ -13,11 +13,11 @@ const AuthContextProvider = ({ children }) => {
   // Define the login function
   const login = async (inputs) => {
     // Perform login logic
-    const res = await axios.post("http://localhost:5000/auth", inputs, {
+    const res = await axios.post("http://localhost:5000/login", inputs, {
       withCredentials: true,
     });
 
-    setCurrentUser(res.data.dataValues);
+    setCurrentUser(res.data);
   };
 
   // Define the logout function
@@ -37,6 +37,7 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
+  
   // Provide the context value to the child components
   return (
     <AuthContext.Provider value={{ currentUser, login }}>

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ImageModal from "./ImageModal";
 import axios from "axios";
+import { AuthContext } from "../../contex/authContextProvider";
 
 const Images = () => {
   const [dataImages, setDataImages] = useState([]);
@@ -14,7 +15,7 @@ const Images = () => {
     getImages();
   }, []);
 
-  console.log(dataImages);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <main>
@@ -26,6 +27,7 @@ const Images = () => {
               description={data.description}
               imageUrl={data.url}
               imageId={data.id}
+              role={currentUser.role}
             />
             <p className="text-center">{data.title}</p>
           </div>

@@ -20,14 +20,11 @@ const User = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: "user",
-    },
-    refreshToken: {
-      type: DataTypes.STRING,
-    },
+    // role: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   defaultValue: "user",
+    // },
   },
   {
     freezeTableName: true,
