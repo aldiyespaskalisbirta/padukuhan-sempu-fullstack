@@ -85,7 +85,7 @@ const Login = () => {
         </button>
         <div className="flex justify-center text-xs">
           <p>Tidak memiliki akun?</p>
-          <Link to="/signup" className="text-green-500 ml-1">
+          <Link to="/register" className="text-green-500 ml-1">
             buat akun
           </Link>
         </div>
