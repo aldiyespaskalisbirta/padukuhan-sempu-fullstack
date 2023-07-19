@@ -27,14 +27,12 @@ const handleLogin = async (req, res) => {
     );
 
     res
-      .cookie("jwt", accessToken, {
+      .cookie("accessToken", accessToken, {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000,
+        maxAge: 1000,
       })
       .status(200)
-      .json({
-        accessToken,
-      });
+      .json({ message: "Login are successfully", accessToken });
   }
 };
 

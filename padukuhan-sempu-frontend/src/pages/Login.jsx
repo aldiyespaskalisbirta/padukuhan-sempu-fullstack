@@ -23,6 +23,7 @@ const Login = () => {
       await login(inputs);
       navigate("/");
     } catch (err) {
+      console.log(err);
       setError(err);
     }
   }
@@ -30,7 +31,7 @@ const Login = () => {
     <>
       <a className="flex justify-end" href="/home">
         <svg
-          class="w-4 h-4 text-gray-800 dark:text-white"
+          className="w-4 h-4 text-gray-800 dark:text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -38,9 +39,9 @@ const Login = () => {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            // stroke-linecap="round"
+            // stroke-linejoin="round"
+            // stroke-width="2"
             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
           />
         </svg>
