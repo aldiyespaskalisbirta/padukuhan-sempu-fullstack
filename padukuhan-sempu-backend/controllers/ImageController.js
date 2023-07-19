@@ -1,6 +1,8 @@
 const Images = require("../models/Image");
 const path = require("path");
 const fs = require("fs");
+const shortid = require("shortid");
+
 // GET IMAGES //
 const getImages = async (req, res) => {
   try {
@@ -16,7 +18,7 @@ const getImageById = async (req, res) => {
   try {
     const response = await Images.findOne({
       where: {
-        id: req.params.id,
+        uuid: req.params.uuid,
       },
     });
     if (!response) return res.status(404).json({ message: "Image not found" });
@@ -48,6 +50,7 @@ const saveImage = (req, res) => {
     if (err) return res.status(500).json({ message: err.message });
     try {
       await Images.create({
+        uuid: shortid.generate(),
         name: name,
         description: description,
         image: fileName,

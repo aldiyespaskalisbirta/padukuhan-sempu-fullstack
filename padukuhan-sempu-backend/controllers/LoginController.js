@@ -22,7 +22,7 @@ const handleLogin = async (req, res) => {
     return res.status(401).json({ message: "Wrong password!" });
   } else {
     const accessToken = jwt.sign(
-      { id: user.id },
+      { uuid: user.uuid },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "15m" }
     );

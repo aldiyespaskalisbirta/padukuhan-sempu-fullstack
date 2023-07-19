@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const shortid = require("shortid");
 
 const handleRegister = async (req, res) => {
   const user = await User.findOne({
@@ -18,6 +19,7 @@ const handleRegister = async (req, res) => {
 
     try {
       await User.create({
+        uuid: shortid.generate(),
         username: username,
         email: email,
         role: role,
