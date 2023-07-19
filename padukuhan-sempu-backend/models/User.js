@@ -15,7 +15,6 @@ const User = db.define(
     uuid: {
       type: DataTypes.STRING,
       allowNull: false,
-      // primaryKey: true,
     },
     username: {
       type: DataTypes.STRING,

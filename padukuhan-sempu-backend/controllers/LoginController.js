@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-
 const jwt = require("jsonwebtoken");
+
 require("dotenv").config();
 
 const handleLogin = async (req, res) => {
@@ -11,13 +11,11 @@ const handleLogin = async (req, res) => {
       username: username,
     },
   });
-  //   check condition
   if (!username)
     return res.status(400).json({ message: "Username are required" });
   if (!password)
     return res.status(400).json({ message: "Password are required" });
   if (!user) return res.status(401).json({ message: "User Not Found" });
-  // check password
   const checkPassword = await bcrypt.compareSync(password, user.password);
   if (!checkPassword) {
     return res.status(401).json({ message: "Wrong password!" });
@@ -31,7 +29,6 @@ const handleLogin = async (req, res) => {
     res
       .cookie("jwt", accessToken, {
         httpOnly: true,
-        // sameSite: "None",
         maxAge: 24 * 60 * 60 * 1000,
       })
       .status(200)
