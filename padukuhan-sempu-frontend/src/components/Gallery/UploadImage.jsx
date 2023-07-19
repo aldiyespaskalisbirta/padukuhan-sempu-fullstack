@@ -1,7 +1,7 @@
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contex/authContextProvider";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,7 @@ const UploadImage = () => {
 
   const navigate = useNavigate();
 
+  
   const uploadImage = async () => {
     const formData = new FormData();
     formData.append("title", title);
@@ -89,8 +90,17 @@ const UploadImage = () => {
           >
             Tambahkan
           </button>
-          <button type="reset" className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]">RESET</button>
-          <button onClick={() => window.location.href = "/gallery/images"} type="button" className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]">
+          <button
+            type="reset"
+            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
+          >
+            RESET
+          </button>
+          <button
+            onClick={() => (window.location.href = "/gallery/images")}
+            type="button"
+            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
+          >
             kembali
           </button>
         </div>

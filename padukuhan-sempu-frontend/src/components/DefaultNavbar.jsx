@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { UserIcon } from "@heroicons/react/24/outline";
 import { AuthContext } from "../contex/authContextProvider";
+
 const navigation = [
   { name: "Home", to: "/" },
   { name: "Budaya", to: "/budaya" },
@@ -83,7 +84,8 @@ const DefaultNavbar = () => {
                 {currentUser ? (
                   <p>Hallo {currentUser.username}</p>
                 ) : (
-                  <UserIcon className="h-5 w-5 text-white" />
+                  // <UserIcon className="h-5 w-5 text-white" />
+                  <h1>LOGIN</h1>
                 )}
               </a>
             </div>

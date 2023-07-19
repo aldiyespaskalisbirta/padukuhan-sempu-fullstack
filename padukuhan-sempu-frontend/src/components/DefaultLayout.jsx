@@ -30,7 +30,7 @@ export default function DefaultLayout() {
       <section className="bg-white">
         <Outlet />
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 }

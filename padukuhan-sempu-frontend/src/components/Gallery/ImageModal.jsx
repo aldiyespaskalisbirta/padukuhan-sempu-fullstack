@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-const ImageModal = ({ imageUrl, title, description, imageId }) => {
+const ImageModal = ({ imageUrl, title, description, imageId, role }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -42,12 +42,15 @@ const ImageModal = ({ imageUrl, title, description, imageId }) => {
               </p>
             </div>
             <div className="action flex gap-5">
-              <button
-                className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 ease-in-out"
-                onClick={() => deleteImage(imageId)}
-              >
-                Delete
-              </button>
+              {role === "admin" && (
+                <button
+                  className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 ease-in-out"
+                  onClick={() => deleteImage(imageId)}
+                >
+                  Delete
+                </button>
+              )}
+
               <button
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition ease-in-out"
                 onClick={closeModal}

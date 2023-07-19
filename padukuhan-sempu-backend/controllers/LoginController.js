@@ -22,27 +22,21 @@ const handleLogin = async (req, res) => {
     return res.status(401).json({ message: "Wrong password!" });
   } else {
     const accessToken = jwt.sign(
-      { username: user.email },
+      { id: user.id },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "15m" }
     );
-    const refreshToken = jwt.sign(
-      { username: user.username },
-      process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "1d" }
-    );
-    user.refreshToken = refreshToken;
-    const result = await user.save();
-    console.log(result);
 
     res
-      .cookie("jwt", refreshToken, {
+      .cookie("jwt", accessToken, {
         httpOnly: true,
-        sameSite: "None",
+        // sameSite: "None",
         maxAge: 24 * 60 * 60 * 1000,
       })
       .status(200)
-      .json({ accessToken });
+      .json({
+        accessToken: accessToken,
+      });
   }
 };
 

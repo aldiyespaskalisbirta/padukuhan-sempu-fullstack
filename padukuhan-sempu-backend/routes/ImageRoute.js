@@ -12,7 +12,7 @@ const {
 
 const router = express.Router();
 
-router.get("/images", verifyToken, getImages);
+router.get("/images", getImages);
 router.get("/images/:id", getImageById);
 
 router.post("/images", verifyToken, saveImage);
