@@ -1,6 +1,3 @@
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
-
 const handleLogout = async (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(204);

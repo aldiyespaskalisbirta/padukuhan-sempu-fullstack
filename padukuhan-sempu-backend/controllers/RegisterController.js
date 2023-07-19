@@ -27,7 +27,7 @@ const handleRegister = async (req, res) => {
       });
       res.status(201).json({ message: "User successfully created" });
     } catch (err) {
-      console.log(err.message);
+      res.status(500).json({ message: err.message });
     }
   }
 };

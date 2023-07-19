@@ -5,7 +5,7 @@ import { AuthContext } from "../contex/authContextProvider";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const [error, setError] = useState("");
@@ -50,15 +50,14 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="flex max-w-md flex-col gap-4">
         <div className="flex flex-col">
           <div className=" block">
-            <Label htmlFor="email" value="Email" />
+            <Label htmlFor="username" value="Username" />
           </div>
           <TextInput
-            id="email"
-            name="email"
+            id="username"
+            name="username"
             onChange={handleChange}
-            placeholder="namakamu@gmail.com"
             required
-            type="email"
+            type="text"
           />
         </div>
         <div className="flex flex-col">

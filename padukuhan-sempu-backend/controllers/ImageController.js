@@ -4,17 +4,15 @@ const fs = require("fs");
 
 const shortid = require("shortid");
 
-// GET IMAGES //
 const getImages = async (req, res) => {
   try {
     const response = await Images.findAll();
     res.json(response);
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: err.message });
   }
 };
 
-// GET IMAGE BY ID //
 const getImageById = async (req, res) => {
   try {
     const response = await Images.findOne({
@@ -25,11 +23,10 @@ const getImageById = async (req, res) => {
     if (!response) return res.status(404).json({ message: "Image not found" });
     res.json(response);
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: err.message });
   }
 };
 
-// INSERT IMAGE //
 const saveImage = (req, res) => {
   if (req.files === null)
     return res.status(400).json({ message: "No File Uploaded" });
@@ -59,15 +56,13 @@ const saveImage = (req, res) => {
       });
       res.status(201).json({ message: "Image successfully created" });
     } catch (err) {
-      console.log(err.message);
+      res.status(500).json({ message: err.message });
     }
   });
 };
 
-// UPDATE IMAGE //
 const updateImage = (req, res) => {};
 
-// DELETE IMAGE //
 const deleteImage = async (req, res) => {
   const image = await Images.findOne({
     where: {
@@ -94,14 +89,12 @@ const downloadImage = async (req, res) => {
       id: req.params.id,
     },
   });
-  const filePath = `./public/images/${image.image}`; // Specify the path to the file you want to download
-  const fileName = image.image; // Specify the name you want the downloaded file to have
+  const filePath = `./public/images/${image.image}`;
+  const fileName = image.image;
 
-  // Set the headers to prompt the browser to download the file
   res.setHeader("Content-disposition", `attachment; filename=${fileName}`);
   res.setHeader("Content-type", "application/pdf");
 
-  // Create a read stream from the file and pipe it to the response
   const fileStream = fs.createReadStream(filePath);
   fileStream.pipe(res);
 };
