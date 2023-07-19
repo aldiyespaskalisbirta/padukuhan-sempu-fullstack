@@ -19,14 +19,16 @@ const Login = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      await login(inputs);
+
+    const response = await login(inputs);
+
+    if (response.status === 200) {
       navigate("/");
-    } catch (err) {
-      console.log(err);
-      setError(err);
+    } else {
+      setError(response.message);
     }
   }
+
   return (
     <>
       <a className="flex justify-end" href="/home">
@@ -48,6 +50,9 @@ const Login = () => {
       </a>
 
       <h1 className="font-bold text-center text-2xl p-4">LOGIN</h1>
+      {error && (
+        <p className="text-center text-red-500 font-semibold">{error}</p>
+      )}
       <form onSubmit={handleSubmit} className="flex max-w-md flex-col gap-4">
         <div className="flex flex-col">
           <div className=" block">

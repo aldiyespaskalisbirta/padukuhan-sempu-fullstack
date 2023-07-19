@@ -12,16 +12,18 @@ const AuthContextProvider = ({ children }) => {
 
   // Define the login function
   const login = async (inputs) => {
-    // Perform login logic
     try {
       const res = await axios.post("http://localhost:5000/login", inputs, {
         withCredentials: true,
       });
-
-      console.log(res.data.message);
+      console.log(res.data);
       setToken(res.data.accessToken);
+      return { status: 200 };
     } catch (err) {
-      console.log(err.response.data.message);
+      return {
+        status: err.response.status,
+        message: err.response.data.message,
+      };
     }
   };
 
