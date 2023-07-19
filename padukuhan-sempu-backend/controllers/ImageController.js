@@ -36,7 +36,7 @@ const saveImage = (req, res) => {
   const fileSize = file.data.length;
   const ext = path.extname(file.name);
   const fileName = file.md5 + ext;
-  const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+  const url = `${req.protocol}://${req.get("host")}/gallery/${fileName}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
   if (!allowedType.includes(ext.toLowerCase()))
@@ -44,7 +44,7 @@ const saveImage = (req, res) => {
   if (fileSize > 10000000)
     return res.status(422).json({ message: "Image must be less than 5mb" });
 
-  file.mv(`./public/images/${fileName}`, async (err) => {
+  file.mv(`./public/gallery/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ message: err.message });
     try {
       await Images.create({
@@ -66,17 +66,17 @@ const updateImage = (req, res) => {};
 const deleteImage = async (req, res) => {
   const image = await Images.findOne({
     where: {
-      id: req.params.id,
+      uuid: req.params.uuid,
     },
   });
   if (!image) return res.status(404).json({ message: "Image not found" });
 
   try {
-    const filepath = `./public/images/${image.image}`;
+    const filepath = `./public/gallery/${image.image}`;
     fs.unlinkSync(filepath);
     await Images.destroy({
       where: {
-        id: req.params.id,
+        uuid: req.params.uuid,
       },
     });
     res.status(200).json({ message: "Image deleted successfully" });
@@ -86,10 +86,10 @@ const deleteImage = async (req, res) => {
 const downloadImage = async (req, res) => {
   const image = await Images.findOne({
     where: {
-      id: req.params.id,
+      uuid: req.params.uuid,
     },
   });
-  const filePath = `./public/images/${image.image}`;
+  const filePath = `./public/gallery/${image.image}`;
   const fileName = image.image;
 
   res.setHeader("Content-disposition", `attachment; filename=${fileName}`);

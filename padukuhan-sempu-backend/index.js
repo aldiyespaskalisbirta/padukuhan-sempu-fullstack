@@ -4,6 +4,7 @@ const cors = require("cors");
 const imageRoute = require("./routes/ImageRoute");
 const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/UserRoute");
+const CultureRoute = require("./routes/CultureRoute");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(FileUpload());
 
 app.use(express.static("public"));
 app.use(userRoute);
+app.use(CultureRoute);
 app.use(imageRoute);
 
 const port = process.env.PORT || 5000;

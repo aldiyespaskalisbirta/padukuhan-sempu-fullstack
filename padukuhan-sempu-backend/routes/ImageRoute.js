@@ -12,10 +12,10 @@ const {
 const router = express.Router();
 
 router.get("/images", getImages);
-router.get("/images/:id", getImageById);
+router.get("/images/:uuid", getImageById);
 router.post("/images", saveImage);
-router.patch("/images/:id", updateImage);
-router.delete("/images/:id", deleteImage);
-router.get("/images/download/:id", downloadImage);
+router.patch("/images/:uuid", updateImage);
+router.delete("/images/:uuid", deleteImage);
+router.get("/images/download/:uuid", downloadImage);
 
 module.exports = router;
