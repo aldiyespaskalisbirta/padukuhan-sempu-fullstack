@@ -1,6 +1,9 @@
 const Images = require("../models/Image");
 const path = require("path");
 const fs = require("fs");
+
+const shortid = require("shortid");
+
 // GET IMAGES //
 const getImages = async (req, res) => {
   try {
@@ -16,7 +19,7 @@ const getImageById = async (req, res) => {
   try {
     const response = await Images.findOne({
       where: {
-        id: req.params.id,
+        uuid: req.params.uuid,
       },
     });
     if (!response) return res.status(404).json({ message: "Image not found" });
@@ -41,13 +44,14 @@ const saveImage = (req, res) => {
 
   if (!allowedType.includes(ext.toLowerCase()))
     return res.status(422).json({ message: "Invalid Image Extension" });
-  if (fileSize > 5000000)
+  if (fileSize > 10000000)
     return res.status(422).json({ message: "Image must be less than 5mb" });
 
   file.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ message: err.message });
     try {
       await Images.create({
+        uuid: shortid.generate(),
         name: name,
         description: description,
         image: fileName,
@@ -61,9 +65,7 @@ const saveImage = (req, res) => {
 };
 
 // UPDATE IMAGE //
-const updateImage = (req, res) => {
-	
-};
+const updateImage = (req, res) => {};
 
 // DELETE IMAGE //
 const deleteImage = async (req, res) => {
@@ -75,7 +77,7 @@ const deleteImage = async (req, res) => {
   if (!image) return res.status(404).json({ message: "Image not found" });
 
   try {
-    const filepath = `./public//images/${image.image}`;
+    const filepath = `./public/images/${image.image}`;
     fs.unlinkSync(filepath);
     await Images.destroy({
       where: {
@@ -86,10 +88,29 @@ const deleteImage = async (req, res) => {
   } catch (err) {}
 };
 
+const downloadImage = async (req, res) => {
+  const image = await Images.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+  const filePath = `./public/images/${image.image}`; // Specify the path to the file you want to download
+  const fileName = image.image; // Specify the name you want the downloaded file to have
+
+  // Set the headers to prompt the browser to download the file
+  res.setHeader("Content-disposition", `attachment; filename=${fileName}`);
+  res.setHeader("Content-type", "application/pdf");
+
+  // Create a read stream from the file and pipe it to the response
+  const fileStream = fs.createReadStream(filePath);
+  fileStream.pipe(res);
+};
+
 module.exports = {
   getImages,
   getImageById,
   saveImage,
   updateImage,
   deleteImage,
+  downloadImage,
 };

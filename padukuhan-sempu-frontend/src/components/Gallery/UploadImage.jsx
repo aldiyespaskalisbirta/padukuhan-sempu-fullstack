@@ -1,9 +1,9 @@
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contex/authContextProvider";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UploadImage = () => {
   const [title, setTitle] = useState("");
@@ -13,6 +13,7 @@ const UploadImage = () => {
 
   const navigate = useNavigate();
 
+  
   const uploadImage = async () => {
     const formData = new FormData();
     formData.append("title", title);
@@ -43,13 +44,13 @@ const UploadImage = () => {
     <div className="w-2/3 flex flex-col bg-gray-300 rounded-2xl p-8 shadow-2xl">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="title" className="w-full justify-start font-semibold">
+          <label htmlFor="name" className="w-full justify-start font-semibold">
             Judul gambar
           </label>
           <input
             type="text"
-            name="title"
-            id="title"
+            name="name"
+            id="name"
             className="input w-full"
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -82,12 +83,25 @@ const UploadImage = () => {
             onChange={loadImage}
           />
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex md:flex-row items-center justify-center gap-3 flex-col">
           <button
             type="submit"
-            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600"
+            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
           >
             Tambahkan
+          </button>
+          <button
+            type="reset"
+            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
+          >
+            RESET
+          </button>
+          <button
+            onClick={() => (window.location.href = "/gallery/images")}
+            type="button"
+            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
+          >
+            kembali
           </button>
         </div>
       </form>

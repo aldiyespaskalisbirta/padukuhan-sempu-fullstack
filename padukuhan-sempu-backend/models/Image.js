@@ -6,10 +6,27 @@ const { DataTypes } = Sequelize;
 const Images = db.define(
   "Images",
   {
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    image: DataTypes.STRING,
-    url: DataTypes.STRING,
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    uuid: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    image: { type: DataTypes.STRING, allowNull: false },
+    url: { type: DataTypes.STRING, allowNull: false },
   },
   {
     freezeTableName: true,
@@ -18,6 +35,6 @@ const Images = db.define(
 
 module.exports = Images;
 
-(async () => {
-  await db.sync();
-})();
+// (async () => {
+//   await db.sync();
+// })();
