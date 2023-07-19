@@ -17,7 +17,9 @@ const DefaultNavbar = () => {
 
   const [hoveredLink, setHoveredLink] = useState(null);
 
-  const { token } = useContext(AuthContext);
+  const { token, logout } = useContext(AuthContext);
+  const isLoggedIn = !!token
+
   // console.log(token);
   const handleLinkHover = (index) => {
     setHoveredLink(index);
@@ -68,9 +70,8 @@ const DefaultNavbar = () => {
               <li key={index}>
                 <a
                   href={item.to}
-                  className={`${
-                    hoveredLink === index ? "text-white" : "text-gray-300"
-                  } hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors duration-500`}
+                  className={`${hoveredLink === index ? "text-white" : "text-gray-300"
+                    } hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors duration-500`}
                   onMouseEnter={() => handleLinkHover(index)}
                   onMouseLeave={handleLinkLeave}
                 >
@@ -79,14 +80,16 @@ const DefaultNavbar = () => {
               </li>
             ))}
             <div className="flex justify-center items-center">
-              <a href="/login">
-                {token ? (
-                  <p>Hallo {`Sempu`}</p>
-                ) : (
-                  // <UserIcon className="h-5 w-5 text-white" />
+              {isLoggedIn ? (
+                <button onClick={logout}>
+                  LOGOUT
+                </button>
+              ) : (
+                // <UserIcon className="h-5 w-5 text-white" />
+                <a href="/login">
                   <h1>LOGIN</h1>
-                )}
-              </a>
+                </a>
+              )}
             </div>
           </ul>
         </div>
