@@ -1,10 +1,6 @@
-import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { AuthContext } from "../contex/authContextProvider";
 
 const Gallery = () => {
-  const { token } = useContext(AuthContext);
-
   return (
     <div className="mt-16">
       <div className="flex justify-between text-center mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
