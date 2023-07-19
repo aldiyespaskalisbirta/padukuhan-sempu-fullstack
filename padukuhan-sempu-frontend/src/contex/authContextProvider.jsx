@@ -24,7 +24,8 @@ const AuthContextProvider = ({ children }) => {
   const logout = () => {
     // Perform logout logic
     // Reset the user data and isLoggedIn state
-    setUser(null);
+    setToken(null);
+    localStorage.removeItem("user")
   };
 
   // Create the context value object
