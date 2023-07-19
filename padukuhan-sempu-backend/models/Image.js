@@ -6,6 +6,17 @@ const { DataTypes } = Sequelize;
 const Images = db.define(
   "Images",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    uuid: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -6,6 +6,17 @@ const { DataTypes } = Sequelize;
 const User = db.define(
   "Users",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    uuid: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // primaryKey: true,
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,11 +31,6 @@ const User = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // role: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   defaultValue: "user",
-    // },
   },
   {
     freezeTableName: true,
