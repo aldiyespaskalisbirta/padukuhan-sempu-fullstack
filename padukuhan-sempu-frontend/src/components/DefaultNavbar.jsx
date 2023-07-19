@@ -84,6 +84,7 @@ const DefaultNavbar = () => {
                 <button onClick={logout}>
                   LOGOUT
                 </button>
+                
               ) : (
                 // <UserIcon className="h-5 w-5 text-white" />
                 <a href="/login">
