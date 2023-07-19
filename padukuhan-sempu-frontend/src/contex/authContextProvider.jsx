@@ -21,11 +21,12 @@ const AuthContextProvider = ({ children }) => {
   };
 
   // Define the logout function
-  const logout = () => {
+  const logout = async () => {
     // Perform logout logic
+    await axios.post("http://localhost:5000/logout");
     // Reset the user data and isLoggedIn state
     setToken(null);
-    localStorage.removeItem("user")
+    localStorage.removeItem("user");
   };
 
   // Create the context value object
