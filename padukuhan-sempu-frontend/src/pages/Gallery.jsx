@@ -1,6 +1,13 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+const handleLogin = () => {
+  setIsLoggedIn(true);
+}
+
+
 const Gallery = () => {
   return (
     <div className="mt-16">
