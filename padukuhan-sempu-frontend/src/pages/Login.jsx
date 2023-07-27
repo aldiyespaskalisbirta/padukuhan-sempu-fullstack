@@ -5,7 +5,7 @@ import { AuthContext } from "../contex/authContextProvider";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const [error, setError] = useState("");
@@ -19,18 +19,21 @@ const Login = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      await login(inputs);
+
+    const response = await login(inputs);
+
+    if (response.status === 200) {
       navigate("/");
-    } catch (err) {
-      setError(err);
+    } else {
+      setError(response.message);
     }
   }
+
   return (
     <>
       <a className="flex justify-end" href="/home">
         <svg
-          class="w-4 h-4 text-gray-800 dark:text-white"
+          className="w-4 h-4 text-gray-800 dark:text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -38,27 +41,29 @@ const Login = () => {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            // stroke-linecap="round"
+            // stroke-linejoin="round"
+            // stroke-width="2"
             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
           />
         </svg>
       </a>
 
       <h1 className="font-bold text-center text-2xl p-4">LOGIN</h1>
+      {error && (
+        <p className="text-center text-red-500 font-semibold">{error}</p>
+      )}
       <form onSubmit={handleSubmit} className="flex max-w-md flex-col gap-4">
         <div className="flex flex-col">
           <div className=" block">
-            <Label htmlFor="email" value="Email" />
+            <Label htmlFor="username" value="Username" />
           </div>
           <TextInput
-            id="email"
-            name="email"
+            id="username"
+            name="username"
             onChange={handleChange}
-            placeholder="namakamu@gmail.com"
             required
-            type="email"
+            type="text"
           />
         </div>
         <div className="flex flex-col">

@@ -4,17 +4,15 @@ const fs = require("fs");
 
 const shortid = require("shortid");
 
-// GET IMAGES //
 const getImages = async (req, res) => {
   try {
     const response = await Images.findAll();
     res.json(response);
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: err.message });
   }
 };
 
-// GET IMAGE BY ID //
 const getImageById = async (req, res) => {
   try {
     const response = await Images.findOne({
@@ -25,11 +23,10 @@ const getImageById = async (req, res) => {
     if (!response) return res.status(404).json({ message: "Image not found" });
     res.json(response);
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json({ message: err.message });
   }
 };
 
-// INSERT IMAGE //
 const saveImage = (req, res) => {
   if (req.files === null)
     return res.status(400).json({ message: "No File Uploaded" });
@@ -39,7 +36,7 @@ const saveImage = (req, res) => {
   const fileSize = file.data.length;
   const ext = path.extname(file.name);
   const fileName = file.md5 + ext;
-  const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+  const url = `${req.protocol}://${req.get("host")}/gallery/${fileName}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
   if (!allowedType.includes(ext.toLowerCase()))
@@ -47,7 +44,7 @@ const saveImage = (req, res) => {
   if (fileSize > 10000000)
     return res.status(422).json({ message: "Image must be less than 5mb" });
 
-  file.mv(`./public/images/${fileName}`, async (err) => {
+  file.mv(`./public/gallery/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ message: err.message });
     try {
       await Images.create({
@@ -59,29 +56,27 @@ const saveImage = (req, res) => {
       });
       res.status(201).json({ message: "Image successfully created" });
     } catch (err) {
-      console.log(err.message);
+      res.status(500).json({ message: err.message });
     }
   });
 };
 
-// UPDATE IMAGE //
 const updateImage = (req, res) => {};
 
-// DELETE IMAGE //
 const deleteImage = async (req, res) => {
   const image = await Images.findOne({
     where: {
-      id: req.params.id,
+      uuid: req.params.uuid,
     },
   });
   if (!image) return res.status(404).json({ message: "Image not found" });
 
   try {
-    const filepath = `./public/images/${image.image}`;
+    const filepath = `./public/gallery/${image.image}`;
     fs.unlinkSync(filepath);
     await Images.destroy({
       where: {
-        id: req.params.id,
+        uuid: req.params.uuid,
       },
     });
     res.status(200).json({ message: "Image deleted successfully" });
@@ -91,17 +86,15 @@ const deleteImage = async (req, res) => {
 const downloadImage = async (req, res) => {
   const image = await Images.findOne({
     where: {
-      id: req.params.id,
+      uuid: req.params.uuid,
     },
   });
-  const filePath = `./public/images/${image.image}`; // Specify the path to the file you want to download
-  const fileName = image.image; // Specify the name you want the downloaded file to have
+  const filePath = `./public/gallery/${image.image}`;
+  const fileName = image.image;
 
-  // Set the headers to prompt the browser to download the file
   res.setHeader("Content-disposition", `attachment; filename=${fileName}`);
   res.setHeader("Content-type", "application/pdf");
 
-  // Create a read stream from the file and pipe it to the response
   const fileStream = fs.createReadStream(filePath);
   fileStream.pipe(res);
 };

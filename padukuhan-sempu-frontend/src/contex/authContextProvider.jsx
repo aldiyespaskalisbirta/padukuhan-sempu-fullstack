@@ -12,20 +12,28 @@ const AuthContextProvider = ({ children }) => {
 
   // Define the login function
   const login = async (inputs) => {
-    // Perform login logic
-    const res = await axios.post("http://localhost:5000/login", inputs, {
-      withCredentials: true,
-    });
-
-    setToken(res.data);
+    try {
+      const res = await axios.post("http://localhost:5000/login", inputs, {
+        withCredentials: true,
+      });
+      console.log(res.data);
+      setToken(res.data.accessToken);
+      return { status: 200 };
+    } catch (err) {
+      return {
+        status: err.response.status,
+        message: err.response.data.message,
+      };
+    }
   };
 
   // Define the logout function
-  const logout = () => {
+  const logout = async () => {
     // Perform logout logic
+    await axios.post("http://localhost:5000/logout");
     // Reset the user data and isLoggedIn state
     setToken(null);
-    localStorage.removeItem("user")
+    localStorage.removeItem("user");
   };
 
   // Create the context value object
@@ -41,7 +49,7 @@ const AuthContextProvider = ({ children }) => {
 
   // Provide the context value to the child components
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={authContextValue}>
       {children}
     </AuthContext.Provider>
   );

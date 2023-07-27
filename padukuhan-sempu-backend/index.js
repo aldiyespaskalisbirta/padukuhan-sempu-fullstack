@@ -4,17 +4,10 @@ const cors = require("cors");
 const imageRoute = require("./routes/ImageRoute");
 const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/UserRoute");
+const CultureRoute = require("./routes/CultureRoute");
 
 const app = express();
 
-// middleware
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   res.setHeader("Access-Control-Allow-Credentials", true);
-//   next();
-// });
 app.use(
   cors({
     credentials: true,
@@ -26,9 +19,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(FileUpload());
 
-// server static files
 app.use(express.static("public"));
 app.use(userRoute);
+app.use(CultureRoute);
 app.use(imageRoute);
 
 const port = process.env.PORT || 5000;
