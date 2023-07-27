@@ -1,9 +1,6 @@
-import { Button, Label, TextInput, Textarea } from "flowbite-react";
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../contex/authContextProvider";
-import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const UploadImage = () => {
   const [title, setTitle] = useState("");
@@ -13,7 +10,6 @@ const UploadImage = () => {
 
   const navigate = useNavigate();
 
-  
   const uploadImage = async () => {
     const formData = new FormData();
     formData.append("title", title);
@@ -41,7 +37,7 @@ const UploadImage = () => {
   }
 
   return (
-    <div className="w-2/3 flex flex-col bg-gray-300 rounded-2xl p-8 shadow-2xl">
+    <div className="mx-2 md:w-2/3 flex flex-col bg-gray-300 rounded-2xl  shadow-2xl px-4 md:px-8">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="w-full justify-start font-semibold">
@@ -69,7 +65,7 @@ const UploadImage = () => {
             rows="5"
             className="textarea text-wrap w-full resize-none relative"
             onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="image" className="w-full justify-start font-semibold">
@@ -83,7 +79,7 @@ const UploadImage = () => {
             onChange={loadImage}
           />
         </div>
-        <div className="flex md:flex-row items-center justify-center gap-3 flex-col">
+        <div className="flex items-center justify-center gap-3">
           <button
             type="submit"
             className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
@@ -97,9 +93,9 @@ const UploadImage = () => {
             RESET
           </button>
           <button
-            onClick={() => (window.location.href = "/gallery/images")}
+            onClick={() => navigate("/gallery/images")}
             type="button"
-            className="submit btn bg-green-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
+            className="submit btn bg-blue-500 text-white font-semibold hover:bg-green-600 w-[100px] h-[50px]"
           >
             kembali
           </button>

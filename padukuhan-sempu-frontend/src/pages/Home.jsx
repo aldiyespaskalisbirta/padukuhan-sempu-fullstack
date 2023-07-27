@@ -1,16 +1,32 @@
-"use client";
 import { Fade, Slide } from "react-awesome-reveal";
 import line from "../image/Line.png";
 import Card from "../components/Home/CardKegiatanTahunan";
 import MapLink from "../components/Home/MapLink";
 import { Carousel } from "flowbite-react";
 import awan from "../image/awan.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
+  const [culture, setCulture] = useState([]);
+  const [error, setError] = useState("");
+  async function getCulture() {
+    try {
+      const response = await axios.get("http://localhost:5000/culture");
+      setCulture(response.data);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  useEffect(() => {
+    getCulture();
+  }, []);
+
   return (
     <main>
       {/* slide */}
-      <div className="sticky">
+      <section className="sticky">
         <div className="md:h-[100vh] h-[60vh] relative">
           <Carousel slideInterval={3000}>
             <img src="https://scontent.fsrg6-1.fna.fbcdn.net/v/t39.30808-6/353807308_2230421623834378_1964256921282244413_n.jpg?stp=cp6_dst-jpg_p720x720&_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGo0vYEBw4-sRrPTOCiSsB1DUglFndXty0NSCUWd1e3LQktXgbK-TmqmLg_gbIYKY1MOXNd4zuwsa6VYipVqTql&_nc_ohc=l5G5GIOUqnoAX8KvTme&_nc_ht=scontent.fsrg6-1.fna&oh=00_AfAKHukYO7vj8GK2w_QMQbARm9l47KzYQ5kr0JKOlxux1w&oe=64B51DD7" />
@@ -26,19 +42,17 @@ const Home = () => {
             alt=""
           />
         </div>
-      </div>
+      </section>
 
       <Fade cascade>
         {/* tentang padukuhan */}
         <div className="flex flex-col sm:flex-row items-center justify-center h-auto p-4 md:mt-16">
-          <div className=" text-center w-[30%]">
+          <div className=" text-center">
             <Fade direction="left" delay={300}>
-              <div className="font-sans font-black text-lg md:text-xl w-full ">
-                <p> TENTANG PADUKUHAN </p>
-                <hr />
-                <p>SEMPU KALURAHAN</p>
-                <hr />
-                <p>PRINGOMBO</p>
+              <div>
+                <h4 className="font-sans font-black text-xl w-full">
+                  TENTANG PADUKUHAN SEMPU KALURAHAN PRINGOMBO
+                </h4>
               </div>
             </Fade>
           </div>
@@ -48,7 +62,7 @@ const Home = () => {
           </div>
           <div className="text-center w-[90%] md:w-[50%]">
             <Fade direction="right" delay={300}>
-              <p className="font-sans ">
+              <p className="font-sans text-justify">
                 Padukuhan Sempu adalah sebuah padukuhan yang terletak di
                 Kalurahan Pringombo, Kecamatan Rongkop, Kabupaten Gunungkidul,
                 di Provinsi Daerah Istimewa Yogyakarta, Indonesia. Kabupaten
@@ -66,12 +80,13 @@ const Home = () => {
 
         {/* Kegiatan Masyarakat */}
       </Fade>
-      <div className="bg-[#B4B8AE] pt-16 pb-16">
+      <section className="bg-[#B4B8AE] space-y-6 py-6 px-4">
         <Fade delay={300}>
-          <div className="text-center">
-            <p className="uppercase font-sans font-black md:text-2xl text-lg mb-10">
-              Kegiatan masyarakat sempu
-            </p>
+          <div>
+            {/* <p className="uppercase font-sans font-black md:text-2xl text-lg mb-10"> */}
+            <h4 className="text-center font-sans font-black text-xl w-full border-b-2 md:border-b-0">
+              KEGIATAN MASYARAKAT SEMPU
+            </h4>
           </div>
         </Fade>
         <div className="flex justify-center items-center">
@@ -79,48 +94,27 @@ const Home = () => {
             <Fade direction="down">
               {/* BUAT TITIK TIGA (...) PAKAI TAILWIND LINE-CLAMP */}
               {/* https://tailwindcss.com/docs/line-clamp */}
-              <Card
-                url={"https://flowbite.com/docs/images/carousel/carousel-1.svg"}
-                judul={"Rasulan"}
-                deskripsi={
-                  "Di Padukuhan Sempu, Kalurahan Pringombo, Kapanewon Rongkop, Kabupaten Gunungkidul, ada tradisi Bersih Dusun yang dilaksanakan setiap tahun. Tradisi ini mencakup berbagai kegiatan seperti kenduri, pengiriman sesaji, dan pertunjukan seni tradisional..."
-                }
-              />
-              <Card
-                url={"https://flowbite.com/docs/images/carousel/carousel-1.svg"}
-                judul={"Gumbregan"}
-                deskripsi={
-                  "and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries...."
-                }
-              />
-              <Card
-                url={"https://flowbite.com/docs/images/carousel/carousel-1.svg"}
-                judul={"Kenduri"}
-                deskripsi={
-                  "and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries...."
-                }
-              />
-              <Card
-                url={"https://flowbite.com/docs/images/carousel/carousel-1.svg"}
-                judul={"Kirab Budaya"}
-                deskripsi={
-                  "and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries...."
-                }
-              />
+
+              {culture.map((data) => (
+                <Card
+                  key={data.uuid}
+                  url={data.url}
+                  judul={data.name}
+                  deskripsi={data.description}
+                />
+              ))}
             </Fade>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Google Maps */}
-      <div className="text-center mt-16 mr-16 ">
-        <div>
-          <Slide>
-            <p className="font-sans font-black md:text-2xl text-base mb-10 uppercase">
-              lokasi dan kontak
-            </p>
-          </Slide>
-        </div>
+      <section className="space-y-6 py-6 px-4">
+        <Slide>
+          <h4 className="font-sans font-black text-xl w-full text-center">
+            LOKASI DAN KONTAK
+          </h4>
+        </Slide>
         <div>
           <MapLink
             destination={
@@ -128,7 +122,7 @@ const Home = () => {
             }
           />
         </div>
-      </div>
+      </section>
     </main>
   );
 };

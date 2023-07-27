@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../contex/authContextProvider";
-
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/authContextProvider";
+import { Link } from "react-router-dom";
 const navigation = [
   { name: "Home", to: "/" },
   { name: "Budaya", to: "/budaya" },
@@ -8,7 +8,7 @@ const navigation = [
   { name: "Kontak", to: "/kontak" },
 ];
 
-const DefaultNavbar = () => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -18,7 +18,7 @@ const DefaultNavbar = () => {
   const [hoveredLink, setHoveredLink] = useState(null);
 
   const { token, logout } = useContext(AuthContext);
-  const isLoggedIn = !!token;
+  const isLoggedIn = token;
 
   // console.log(token);
   const handleLinkHover = (index) => {
@@ -32,9 +32,9 @@ const DefaultNavbar = () => {
   return (
     <nav className=" opacity-80 px-4 md:px-24 bg-[#577865] fixed top-0 left-0 right-0 z-50">
       <div className="max-w-screen flex flex-wrap items-center justify-between mx-auto py-2 md:py-4">
-        <a href="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <span className="logo text-white font-bold text-xl">SEMPU</span>
-        </a>
+        </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -67,8 +67,8 @@ const DefaultNavbar = () => {
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navigation.map((item, index) => (
               <li key={index}>
-                <a
-                  href={item.to}
+                <Link
+                  to={item.to}
                   className={`${
                     hoveredLink === index ? "text-white" : "text-gray-300"
                   } hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors duration-500`}
@@ -76,17 +76,23 @@ const DefaultNavbar = () => {
                   onMouseLeave={handleLinkLeave}
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
             <div className="flex justify-center items-center">
               {isLoggedIn ? (
-                <button onClick={logout}>LOGOUT</button>
+                <button
+                  className="text-gray-100 px-3 ring-1 rounded-md ring-gray-950"
+                  onClick={logout}
+                >
+                  LOGOUT
+                </button>
               ) : (
-                // <UserIcon className="h-5 w-5 text-white" />
-                <a href="/login">
-                  <h1>LOGIN</h1>
-                </a>
+                <Link to="/login">
+                  <h1 className="text-gray-100 px-3 ring-1 rounded-md ring-gray-950">
+                    LOGIN
+                  </h1>
+                </Link>
               )}
             </div>
           </ul>
@@ -96,4 +102,4 @@ const DefaultNavbar = () => {
   );
 };
 
-export default DefaultNavbar;
+export default Navbar;
