@@ -26,7 +26,7 @@ const Images = () => {
               title={data.title}
               description={data.description}
               imageUrl={data.url}
-              imageId={data.id}
+              imageId={data.uuid}
             />
             <p className="text-center">{data.title}</p>
           </div>
