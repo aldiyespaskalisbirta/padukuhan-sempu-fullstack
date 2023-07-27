@@ -5,6 +5,11 @@ import Card from "../components/Home/CardKegiatanTahunan";
 import MapLink from "../components/Home/MapLink";
 import { Carousel } from "flowbite-react";
 import awan from "../image/awan.png";
+import Slide1 from "../image/slide1.png"
+import Slide2 from "../image/slide2.png"
+import Slide3 from "../image/slide3.png"
+
+
 
 const Home = () => {
   return (
@@ -13,9 +18,9 @@ const Home = () => {
       <div className="sticky">
         <div className="md:h-[100vh] h-[60vh] relative">
           <Carousel slideInterval={3000}>
-            <img src="https://scontent.fsrg6-1.fna.fbcdn.net/v/t39.30808-6/353807308_2230421623834378_1964256921282244413_n.jpg?stp=cp6_dst-jpg_p720x720&_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGo0vYEBw4-sRrPTOCiSsB1DUglFndXty0NSCUWd1e3LQktXgbK-TmqmLg_gbIYKY1MOXNd4zuwsa6VYipVqTql&_nc_ohc=l5G5GIOUqnoAX8KvTme&_nc_ht=scontent.fsrg6-1.fna&oh=00_AfAKHukYO7vj8GK2w_QMQbARm9l47KzYQ5kr0JKOlxux1w&oe=64B51DD7" />
-            <img src="https://scontent-xsp1-3.xx.fbcdn.net/v/t39.30808-6/352176188_1477494953024570_508954860456811740_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHWfSunNarHHZ6fb2t1daxW_cwBZz3all79zAFnPdqWXp-WnboeJt3ja0nw95OE5KuWAwYTDtZ4GwLPdXT-UUM9&_nc_ohc=_M7gr0hS6hgAX-j1RPy&_nc_ht=scontent-xsp1-3.xx&oh=00_AfC132ylkwEVq7VX5IKIscWuRIuMQgOk8N9GK4kDsX3_MA&oe=64BB335F" />
-            <img src="https://scontent-xsp1-2.xx.fbcdn.net/v/t31.18172-8/18920926_1968890720011527_3968093283761144001_o.jpg?_nc_cat=101&ccb=1-7&_nc_sid=174925&_nc_eui2=AeFJJrDFaSXjUhUCv-6zuJNXJI43RhKnvEYkjjdGEqe8RnSmwgn3R3L0_fbyveBsDfxXCwdCYF7ubW9zWPoRspTO&_nc_ohc=XoaqGDAd0kcAX_cxbpl&_nc_ht=scontent-xsp1-2.xx&oh=00_AfDjgroAv8T9lHI8xTBIjKGtqDy8x9Dd0RZkABBeb5LlyA&oe=64DCA675" />
+            <img src={Slide1} />
+            <img src={Slide2} />
+            <img src={Slide3} />
           </Carousel>
         </div>
         <div>
@@ -27,7 +32,6 @@ const Home = () => {
           />
         </div>
       </div>
-
       <Fade cascade>
         {/* tentang padukuhan */}
         <div className="flex flex-col sm:flex-row items-center justify-center h-auto p-4 md:mt-16">
@@ -63,7 +67,6 @@ const Home = () => {
             </Fade>
           </div>
         </div>
-
         {/* Kegiatan Masyarakat */}
       </Fade>
       <div className="bg-[#B4B8AE] pt-16 pb-16">
@@ -111,7 +114,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       {/* Google Maps */}
       <div className="text-center mt-16 mr-16 ">
         <div>
