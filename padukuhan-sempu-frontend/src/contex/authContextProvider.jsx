@@ -8,7 +8,7 @@ const AuthContextProvider = ({ children }) => {
   // Define the state variables for authentication
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("user")) || null
-  );
+);
 
   // Define the login function
   const login = async (inputs) => {
@@ -33,7 +33,7 @@ const AuthContextProvider = ({ children }) => {
   const authContextValue = {
     token,
     login,
-    logout,
+    logout
   };
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const AuthContextProvider = ({ children }) => {
 
   // Provide the context value to the child components
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={authContextValue}>
       {children}
     </AuthContext.Provider>
   );

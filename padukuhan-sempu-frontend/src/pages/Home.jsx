@@ -5,8 +5,13 @@ import Card from "../components/Home/CardKegiatanTahunan";
 import MapLink from "../components/Home/MapLink";
 import { Carousel } from "flowbite-react";
 import awan from "../image/awan.png"
+import { useContext } from "react";
+import { AuthContext } from "../contex/authContextProvider";
 
 const Home = () => {
+
+  const { notification } = useContext(AuthContext);
+
   return (
     <main>
       {/* slide */}
@@ -120,6 +125,11 @@ const Home = () => {
           />
         </div>
       </div>
+      {notification && (
+        <div className="bg-green-500 text-white fixed bottom-4 right-4 p-2 rounded-md shadow-lg">
+          {notification}
+        </div>
+      )}
     </main>
   );
 };

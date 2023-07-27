@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contex/authContextProvider";
 
 const navigation = [
@@ -84,7 +84,6 @@ const DefaultNavbar = () => {
                 <button onClick={logout}>
                   LOGOUT
                 </button>
-                
               ) : (
                 // <UserIcon className="h-5 w-5 text-white" />
                 <a href="/login">
@@ -95,6 +94,11 @@ const DefaultNavbar = () => {
           </ul>
         </div>
       </div>
+      {isLoggedIn && (
+        <div className="bg-green-500 text-white fixed bottom-4 right-4 p-2 rounded-md shadow-lg">
+          Admin Mode
+        </div>
+      )}
     </nav>
   );
 };
