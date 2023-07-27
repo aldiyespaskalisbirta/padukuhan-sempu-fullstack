@@ -94,6 +94,11 @@ const DefaultNavbar = () => {
           </ul>
         </div>
       </div>
+      {isLoggedIn && (
+        <div className="bg-green-500 text-white fixed bottom-4 right-4 p-2 rounded-md shadow-lg">
+          Admin Mode
+        </div>
+      )}
     </nav>
   );
 };
