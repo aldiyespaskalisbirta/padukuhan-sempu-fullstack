@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ContentBudaya from "../components/Budaya/contentBudaya";
 import axios from "axios";
 
 const Budaya = () => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b087268effc4ef26282159fad5972dfcddf21ce
   const [culture, setCulture] = useState([]);
   const [error, setError] = useState("");
   async function getCulture() {
@@ -20,7 +23,7 @@ const Budaya = () => {
   }, []);
 
   return (
-    <main className="">
+    <main className="budaya">
       <section className="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
         <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
           <p className="mb-8 text-lg font-black text-gray-100 lg:text-xl sm:px-16 lg:px-48 uppercase">
@@ -29,9 +32,15 @@ const Budaya = () => {
         </div>
       </section>
       {/* KONTEN */}
+<<<<<<< HEAD
       <div className="">
+=======
+
+      {/* kenduri */}
+      <section>
+>>>>>>> 0b087268effc4ef26282159fad5972dfcddf21ce
         <ContentBudaya data={culture} />
-      </div>
+      </section>
     </main>
   );
 };
