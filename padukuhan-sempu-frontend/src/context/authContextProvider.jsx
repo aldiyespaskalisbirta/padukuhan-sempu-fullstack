@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
+// import dotenv from "dotenv".config();
 // Create the AuthContext
 const AuthContext = createContext();
 
@@ -13,10 +14,9 @@ const AuthContextProvider = ({ children }) => {
   // Define the login function
   const login = async (inputs) => {
     try {
-      const res = await axios.post("http://localhost:5000/login", inputs, {
+      const res = await axios.post(`${process.env.BASE_URL}/login`, inputs, {
         withCredentials: true,
       });
-      console.log(res.data);
       setToken(res.data.accessToken);
       return { status: 200 };
     } catch (err) {
@@ -33,7 +33,6 @@ const AuthContextProvider = ({ children }) => {
     await axios.post("http://localhost:5000/logout");
     // Reset the user data and isLoggedIn state
     setToken(null);
-    localStorage.removeItem("user");
   };
 
   // Create the context value object

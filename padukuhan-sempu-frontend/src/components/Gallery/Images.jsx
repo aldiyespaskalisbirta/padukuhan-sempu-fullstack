@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import ImageModal from "./ImageModal";
 import axios from "axios";
-import { AuthContext } from "../../contex/authContextProvider";
 
 const Images = () => {
   const [dataImages, setDataImages] = useState([]);
@@ -15,15 +14,13 @@ const Images = () => {
     getImages();
   }, []);
 
-  const { currentUser } = useContext(AuthContext);
-
   return (
     <main>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {dataImages.map((data, index) => (
-          <div key={index} className="flex flex-col items-center">
+      <div className="grid max-w-sm grid-cols-2 md:grid-cols-4 gap-4">
+        {dataImages.map((data) => (
+          <div key={data.uuid} className="flex flex-col items-center">
             <ImageModal
-              title={data.title}
+              title={data.name}
               description={data.description}
               imageUrl={data.url}
               imageId={data.uuid}

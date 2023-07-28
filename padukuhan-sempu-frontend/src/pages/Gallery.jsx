@@ -1,16 +1,15 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { AuthContext } from "../contex/authContextProvider";
+import { AuthContext } from "../context/authContextProvider";
 
 const Gallery = () => {
-
   const { token } = useContext(AuthContext);
-  const isLoggedIn = !!token
+  const isLoggedIn = token;
 
   return (
-    <div className="mt-16">
+    <div className="pt-10 md:pt-16">
       <div className="flex justify-between text-center mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-[#424242]">
+        <h1 className="text-xl font-bold tracking-tight text-[#424242]">
           GALLERY FOTO
         </h1>
 
@@ -21,7 +20,6 @@ const Gallery = () => {
           >
             add image
           </Link>
-
         )}
       </div>
       <main className="min-h-screen">

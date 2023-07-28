@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 export default function DefaultLayout() {
   return (
-    <div className="app relative">
+    <div className="app relative min-h-screen">
       <Navbar />
       <section className="bg-gray-100">
         <Outlet />

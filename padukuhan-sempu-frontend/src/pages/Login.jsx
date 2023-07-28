@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../contex/authContextProvider";
+import { AuthContext } from "../context/authContextProvider";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
