@@ -75,9 +75,9 @@ const updateCulture = async (req, res) => {
 
   let fileName = "";
   if (req.files === null) {
-    fileName = Culture.image;
+    fileName = culture.image;
   } else {
-    const file = req.files.file;
+    const file = req.files.imagePath;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
     fileName = file.md5 + ext;
@@ -97,11 +97,14 @@ const updateCulture = async (req, res) => {
       if (err) return res.status(500).json({ message: err.message });
     });
   }
-  const name = req.body.title;
+  const name = req.body.title ? req.body.title : culture.name;
+  const description = req.body.description
+    ? req.body.description
+    : culture.description;
   const url = `${req.protocol}://${req.get("host")}/culture/${fileName}`;
   try {
     await Culture.update(
-      { name: name, image: fileName, url: url },
+      { name: name, description: description, image: fileName, url: url },
       {
         where: {
           uuid: req.params.uuid,
